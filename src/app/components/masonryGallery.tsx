@@ -36,10 +36,15 @@ export function MasonryGallery() {
 
         // set lightbox visibility to true
         setLightboxDisplay(true);
+
+        const body = document.querySelector('body');
+        body!.style.overflow = 'hidden';
     }
 
     const hideLightbox = () => {
         setLightboxDisplay(false)
+        const body = document.querySelector('body');
+        body!.style.overflow = 'auto';
     }
 
     const showPrev = (event: SyntheticEvent) => {
@@ -60,7 +65,7 @@ export function MasonryGallery() {
         event.stopPropagation()
         let currentIndex = imageToShowIndex;
         let nextIndex = currentIndex + 1;
-        
+
         if (nextIndex >= images.length) {
             nextIndex = 0
         }
@@ -82,16 +87,25 @@ export function MasonryGallery() {
                             src={image.imageLink}
                             alt=""
                             loading="lazy"
-                            className="rounded-lg cursor-zoom-in image-card"
+                            className="rounded-lg cursor-zoom-in"
                         />
                     </ImageListItem>
                 ))}
             </ImageList>
             { lightboxDisplay ? 
-                <div id="lightbox" onClick={hideLightbox} className="flex items-center justify-content-between fixed top-0 left-0 z-20 w-3/4 h-full">
-                    <a className="btn" onClick={showPrev}>❮</a>
-                    <img id="lightbox-img" src={imageToShow}></img>
-                    <a className="btn" onClick={showNext}>❯</a>
+                <div id="lightbox" onClick={hideLightbox} className="flex items-center fixed top-0 left-0 z-20 w-full h-full">
+                    <div className="bg-secondary/[0.9] w-full h-full flex">
+                        <div className="flex items-center z-10">
+                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute left-5" onClick={showPrev}>❮</a>
+                            <div className="static">
+                                <img 
+                                    id="lightbox-img" 
+                                    src={imageToShow}
+                                />
+                            </div>
+                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute right-5" onClick={showNext}>❯</a>
+                        </div>
+                    </div>
                 </div>
             : '' }
         </div>
