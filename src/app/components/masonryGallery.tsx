@@ -101,7 +101,7 @@ export function MasonryGallery() {
                                 <img 
                                     id="lightbox-img" 
                                     src={imageToShow}
-                                    className="md:max-h-screen"
+                                    className="md:max-h-screen md:py-8"
                                 />
                             </div>
                             <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute right-5" onClick={showNext}>❯</a>
