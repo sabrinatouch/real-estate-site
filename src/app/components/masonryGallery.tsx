@@ -93,14 +93,15 @@ export function MasonryGallery() {
                 ))}
             </ImageList>
             { lightboxDisplay ? 
-                <div id="lightbox" onClick={hideLightbox} className="flex items-center fixed top-0 left-0 z-20 w-full h-full">
-                    <div className="bg-secondary/[0.9] w-full h-full flex">
-                        <div className="flex items-center z-10">
+                <div id="lightbox" onClick={hideLightbox} className="flex items-center fixed top-0 left-0 z-10 w-full h-full">
+                    <div id="lightbox-underlay" className="bg-secondary/[0.9] w-full h-full flex justify-center">
+                        <div id="lightbox-items" className="flex items-center">
                             <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute left-5" onClick={showPrev}>❮</a>
-                            <div className="static">
+                            <div className="">
                                 <img 
                                     id="lightbox-img" 
                                     src={imageToShow}
+                                    className="md:max-h-screen"
                                 />
                             </div>
                             <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute right-5" onClick={showNext}>❯</a>
