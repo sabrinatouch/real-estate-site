@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { QuadGallery } from "./components/quadGallery";
+import { MasonryGallery } from "./components/masonryGallery";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
           <div className="divider text-sm">Image Gallery</div>
           <div>
-            <QuadGallery />
+            <MasonryGallery />
           </div>
         </main>
       </div>

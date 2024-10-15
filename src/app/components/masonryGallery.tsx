@@ -1,8 +1,13 @@
 'use client';
 
-import { Key, SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from "react";
+import * as React from 'react';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-export function QuadGallery() {
+export function MasonryGallery() {
     const images = [
         { imageLink: "/img1.jpeg" },
         { imageLink: "/img2.jpeg" },
@@ -11,9 +16,6 @@ export function QuadGallery() {
         { imageLink: "/img5.jpeg" },
         { imageLink: "/img6.jpeg" },
         { imageLink: "/img7.jpeg" },
-    ];
-
-    const images2 = [
         { imageLink: "/img8.jpeg" },
         { imageLink: "/img9.jpeg" },
         { imageLink: "/img10.jpeg" },
@@ -42,32 +44,23 @@ export function QuadGallery() {
         event.stopPropagation()
     }
 
-    const ImageCard = (props: { index: Key | null | undefined; imageLink: string; }) => {
-        return (
-            <div key={props.index} className="py-1 cursor-zoom-in image-card" onClick={() => showImage(props.imageLink)}>
-                <img
-                    className="rounded-lg"
-                    src={props.imageLink}
-                    alt=""
-                />
-            </div>
-        )
-    }
+    const theme = useTheme();
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2">
-                <div className= "flex flex-col flex-wrap">
-                    {images.map(({ imageLink }, index) => (
-                        <ImageCard imageLink={imageLink} index={index} />
-                    ))}
-                </div>
-                <div className="flex flex-col flex-wrap">
-                    {images2.map(({ imageLink }, index) => (
-                        <ImageCard imageLink={imageLink} index={index} />
-                    ))}
-                </div>
-            </div>
+            <ImageList variant="masonry" cols={matchDownMd ? 1 : 2} gap={8}>
+                {images.map((image, index) => (
+                    <ImageListItem key={index} onClick={() => showImage(image.imageLink)}>
+                        <img 
+                            src={image.imageLink}
+                            alt=""
+                            loading="lazy"
+                            className="rounded-lg cursor-zoom-in image-card"
+                        />
+                    </ImageListItem>
+                ))}
+            </ImageList>
             { lightboxDisplay ? 
                 <div id="lightbox" onClick={hideLightbox} className="flex items-center justify-content-between fixed top-0 left-0 z-20 w-full h-full">
                     <a className="btn">❮</a>
