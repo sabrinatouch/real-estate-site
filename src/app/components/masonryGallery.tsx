@@ -50,30 +50,18 @@ export function MasonryGallery() {
     const showPrev = (event: SyntheticEvent) => {
         event.stopPropagation()
 
-        let currentIndex = imageToShowIndex;
-        let prevIndex = currentIndex - 1;
-
-        if (prevIndex < 0) {
-            prevIndex = images.length - 1
-        }
-        
-        let prevImage = images[prevIndex]
-        setImageToShow(prevImage.imageLink);
+        const currentIndex = imageToShowIndex;
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        setImageToShow(images[prevIndex].imageLink);
         setImageToShowIndex(prevIndex);
     }
 
     const showNext = (event: SyntheticEvent) => {
         event.stopPropagation()
 
-        let currentIndex = imageToShowIndex;
-        let nextIndex = currentIndex + 1;
-
-        if (nextIndex >= images.length) {
-            nextIndex = 0
-        }
-
-        let nextImage = images[nextIndex]
-        setImageToShow(nextImage.imageLink);
+        const currentIndex = imageToShowIndex;
+        const nextIndex = (currentIndex + 1) % images.length;
+        setImageToShow(images[nextIndex].imageLink);
         setImageToShowIndex(nextIndex);
     }
 
@@ -87,7 +75,7 @@ export function MasonryGallery() {
                     <ImageListItem key={index} onClick={() => showImage(image.imageLink, index)}>
                         <img 
                             src={image.imageLink}
-                            alt=""
+                            alt={"image" + index}
                             loading="lazy"
                             className="rounded-lg cursor-zoom-in"
                         />
@@ -103,6 +91,7 @@ export function MasonryGallery() {
                                 <img 
                                     id="lightbox-img" 
                                     src={imageToShow}
+                                    alt={imageToShow}
                                     className="md:max-h-screen md:py-8"
                                 />
                             </div>
