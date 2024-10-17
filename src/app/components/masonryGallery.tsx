@@ -49,6 +49,7 @@ export function MasonryGallery() {
 
     const showPrev = (event: SyntheticEvent) => {
         event.stopPropagation()
+
         let currentIndex = imageToShowIndex;
         let prevIndex = currentIndex - 1;
 
@@ -63,6 +64,7 @@ export function MasonryGallery() {
 
     const showNext = (event: SyntheticEvent) => {
         event.stopPropagation()
+
         let currentIndex = imageToShowIndex;
         let nextIndex = currentIndex + 1;
 
