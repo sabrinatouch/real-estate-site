@@ -96,7 +96,7 @@ export function MasonryGallery() {
                 <div id="lightbox" onClick={hideLightbox} className="flex items-center fixed top-0 left-0 z-10 w-full h-full">
                     <div id="lightbox-underlay" className="bg-secondary/[0.9] w-full h-full flex justify-center">
                         <div id="lightbox-items" className="flex items-center">
-                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute left-5" onClick={showPrev}>❮</a>
+                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute left-5 md:left-10" onClick={showPrev}>❮</a>
                             <div className="">
                                 <img 
                                     id="lightbox-img" 
@@ -104,7 +104,7 @@ export function MasonryGallery() {
                                     className="md:max-h-screen md:py-8"
                                 />
                             </div>
-                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute right-5" onClick={showNext}>❯</a>
+                            <a className="btn text-base-100/[0.9] hover:text-primary/[0.8] bg-secondary/[0.8] border-none shadow-none absolute right-5 md:right-10" onClick={showNext}>❯</a>
                         </div>
                     </div>
                 </div>
