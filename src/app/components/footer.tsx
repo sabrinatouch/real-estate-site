@@ -13,6 +13,7 @@ export function Footer() {
                 </p>
             </div>
             <p className="text-sm">
+                Touch Real Estate on Colfax and Saint Paul<br/>
                 Copyright © 2024 - All rights reserved 
             </p>
             </aside>
