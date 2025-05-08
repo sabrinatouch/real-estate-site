@@ -12,6 +12,7 @@ cloudinary.config({
 
 export default async function Home() {
   const { resources } = await cloudinary.search.expression('prop-3109').execute(); // Destructure 'resources' from this response since this response came back with a property of 'resources' that includes that array of resources
+  console.log(resources);
 
   return (
     <div className="">
@@ -21,7 +22,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="grow-0">
               <Image 
-                src="/img5.jpeg"
+                src="https://res.cloudinary.com/dnkwvd83w/image/upload/v1746656856/img5_smnkqb.jpg"
                 alt="Image of Unit"
                 width={2936}
                 height={2936}
