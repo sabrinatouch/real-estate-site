@@ -1,9 +1,18 @@
 import Image from "next/image";
-import { MasonryGallery } from "./components/masonryGallery";
+import MasonryGallery from "./components/masonryGallery";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
+import { v2 as cloudinary } from 'cloudinary';
 
-export default function Home() {
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  })
+
+export default async function Home() {
+  const { resources } = await cloudinary.search.expression('prop-3109').execute(); // Destructure 'resources' from this response since this response came back with a property of 'resources' that includes that array of resources
+
   return (
     <div className="">
       <Header />
@@ -19,7 +28,7 @@ export default function Home() {
                 className="rounded-lg"
               />
               <div className="text-sm text-accent mt-2">
-                Listing Last Updated: 10/18/2024
+                Listing Last Updated: 05/07/2025
               </div>
             </div>
             <div className="grow-1">
@@ -63,7 +72,7 @@ export default function Home() {
           </div>
           <div className="divider text-sm">Image Gallery</div>
           <div>
-            <MasonryGallery />
+            <MasonryGallery images={resources}/>
           </div>
         </main>
       </div>
